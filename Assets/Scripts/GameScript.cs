@@ -32,6 +32,7 @@ public class GameScript : MonoBehaviour
     //Preset the texts 
     private void Start()
     {
+        score.SetText("Score: 0");
         //Present the Text to values of 0
     }
 
@@ -68,16 +69,19 @@ public class GameScript : MonoBehaviour
     {
         livesCounter--;
         //Update the text 
+        lives.SetText("lives: " + livesCounter);
         if (livesCounter == 0)
         {
             BackToMainMenu();
         }
+        
     }
 
     //Increase the score and updates the text 
     public void GoalUpdate()
     {
         scoreCounter++;
+        score.SetText("score: " + scoreCounter);
         //Update the Text 
     }
 
@@ -85,11 +89,13 @@ public class GameScript : MonoBehaviour
     public void SpawnBall()
     {
         //Create Ball
+        Instantiate(ball, spawnPoint.position, Quaternion.identity);
     }
 
     //Sends the game back to the main menu scene 
     private void BackToMainMenu()
     {
+        SceneManager.LoadScene("MenuScene");
         //Send back to the main menu
     }
 }
